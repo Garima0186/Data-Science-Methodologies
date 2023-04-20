@@ -1,0 +1,80 @@
+CASE STUDY: ( Decission Trees)
+
+Problem : we are interested in automating the process of figuring out the cuisine of a given dish or recipe. Let's apply the business understanding stage to this problem.
+
+Questions to be asked :
+
+Q. Can we predict the cuisine of a given dish using the name of the dish only?
+A : NO
+
+Q : Q. For example, the following dish names were taken from the menu of a local restaurant in Toronto, Ontario in Canada.
+1. Beast
+2. 2 PM
+3. 4 Minute
+Are you able to tell the cuisine of these dishes?
+A : The cuisine is Japanese. 
+
+Q. What about by appearance only? Yes or No
+A: No, especially when it comes to countries in close geographical proximity such as Scandinavian countries, or Asian countries.
+
+Q. What about determining the cuisine of a dish based on its ingredients?
+A : Potentially yes, as there are specific ingredients unique to each cuisine.
+As you guessed, yes determining the cuisine of a given dish based on its ingredients seems like a viable solution as some ingredients are unique to cuisines.
+
+Q: Accordingly, can you determine the cuisine of the dish associated with the following list of ingredients?
+
+ A: Japanese since the recipe is most likely that of a sushi roll.
+
+
+Analytic Approach
+Q : Why is the analytic approach stage important?¶
+A : Because it helps identify what type of patterns will be needed to address the question most effectively.
+
+Let's explore a machine learning algorithm, decision trees, and see if it is the right technique to automate the process
+of identifying the cuisine of a given dish or recipe while simultaneously providing us with some insight on why a given recipe
+is believed to belong to a certain type of cuisine.
+
+This is a decision tree that a naive person might create manually. Starting at the top with all the recipes for all the 
+cuisines in the world, if a recipe contains rice, then this decision tree would classify it as a Japanese cuisine.
+Otherwise, it would be classified as not a Japanese cuisine.
+
+ 
+
+Is this a good decision tree? Yes or No, and why?
+A: No, because a plethora of dishes from other cuisines contain rice. Therefore, using rice as the ingredient 
+in the Decision node to split on is not a good choice.
+
+Decision Trees:
+
+•	Decision trees are built using recursive partitioning to classify the data.
+•	When partitioning the data, decision trees use the most predictive feature (ingredient in this case) to split the data.
+•	Predictiveness is based on decrease in entropy - gain in information, or impurity.
+Suppose that our data is comprised of green triangles and red circles.
+
+The following decision tree would be considered the optimal model for classifying the 
+data into a node for green triangles and a node for red circles.
+ 
+
+Each of the classes in the leaf nodes are completely pure – that is, each leaf node only contains datapoints that belong to the same class.
+
+On the other hand, the following decision tree is an example of the worst-case scenario that the model could output
+ 
+
+Each leaf node contains datapoints belonging to the two classes resulting in many datapoints ultimately being misclassified.
+
+A tree stops growing at a node when:
+•	Pure or nearly pure.
+•	No remaining variables on which to further subset the data.
+•	The tree has grown to a preselected size limit.
+Here are some characteristics of decision trees
+ 
+
+Now let's put what we learned about decision trees to use. Let's try and build a much better version of the decision tree for our recipe problem.
+ 
+
+I hope you agree that the above decision tree is a much better version than the previous one.
+Although we are still using Rice as the ingredient in the first decision node, recipes get divided into Asian Food and Non-Asian Food. 
+Asian Food is then further divided into Japanese and Not Japanese based on the Wasabi ingredient. 
+This process of splitting leaf nodes continues until each leaf node is pure, i.e., containing recipes belonging to only one cuisine.
+
+Accordingly, decision trees is a suitable technique or algorithm for our recipe case study.
